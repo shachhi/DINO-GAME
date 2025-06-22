@@ -1,0 +1,48 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x126004760 .scope module, "shift_register_line" "shift_register_line" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "in";
+    .port_info 1 /INPUT 1 "on";
+    .port_info 2 /INPUT 1 "clk";
+    .port_info 3 /OUTPUT 8 "ledLine";
+o0x108008010 .functor BUFZ 1, C4<z>; HiZ drive
+v0x126004c70_0 .net "clk", 0 0, o0x108008010;  0 drivers
+o0x108008040 .functor BUFZ 1, C4<z>; HiZ drive
+v0x126014ce0_0 .net "in", 0 0, o0x108008040;  0 drivers
+v0x126014d80_0 .var "ledLine", 7 0;
+o0x1080080a0 .functor BUFZ 1, C4<z>; HiZ drive
+v0x126014e20_0 .net "on", 0 0, o0x1080080a0;  0 drivers
+E_0x126004950 .event posedge, v0x126004c70_0;
+    .scope S_0x126004760;
+T_0 ;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x126014d80_0, 0, 8;
+    %end;
+    .thread T_0;
+    .scope S_0x126004760;
+T_1 ;
+    %wait E_0x126004950;
+    %load/vec4 v0x126014e20_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0x126014ce0_0;
+    %load/vec4 v0x126014d80_0;
+    %parti/s 7, 1, 2;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x126014d80_0, 0;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "shift_register_line.v";

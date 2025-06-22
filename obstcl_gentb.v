@@ -6,7 +6,7 @@ module tb_obstcl_gen;
     reg clk;
     reg reset;
     wire [7:0] ledLine;
-    wire 
+    //wire collision;
 
     // Instantiate the module under test
     obstacle_generator uut (
