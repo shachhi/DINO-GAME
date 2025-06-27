@@ -17,12 +17,12 @@ module tb_obstcl_gen;
 
     // Generate a clock with 10ns period
     initial clk = 0;
-    always #5 clk = ~clk;  // Toggle every 5ns (period = 10ns)
+    always #10 clk = ~clk;  // Toggle every 5ns (period = 10ns)
 
     // Stimulus logic
     initial begin
         $display("Time\tReset\tObstacles");
-        $monitor("%0t\t%b\t%b\t%b", $time, reset, ledLine,collison);
+        $monitor("%0t\t%b\t%b", $time, reset, ledLine);
 
         // Initialize
         reset = 1;
